@@ -5,12 +5,13 @@
 import os
 import psycopg2
 
+HOST = os.environ['HOST']
 DB = os.environ['DB']
 USER = os.environ['USER']
 PASSWORD = os.environ['PASSWORD']
 
 try:
-    conn = psycopg2.connect("dbname='{}' user='{}' host='postgres' password='{}'".format(DB, USER, PASSWORD))
+    conn = psycopg2.connect("dbname='{}' user='{}' host='{}' password='{}'".format(DB, USER, HOST, PASSWORD))
 except:
     print("I am unable to connect to the database")
 
