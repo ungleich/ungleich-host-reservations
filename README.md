@@ -8,12 +8,12 @@ Container intended to get all host reservations from a running ungleich/ungleich
 
 If you want to specify the database connection parameters manually, you can run/create the container like this:
 ```bash
-docker run --name hosts --network=ethz-scientific -e HOST=postgres -e DB=kea_db -e USER=kea -e PASSWORD=dummy_password ungleich/ungleich-host-inventory
+docker run --name hosts --network=<user-defined-network> -e HOST=postgres -e DB=kea_db -e USER=kea -e PASSWORD=dummy_password ungleich/ungleich-host-inventory
 ```
 
 Otherwise, if you prefer to take the parameters directly from a running Kea container, you can run/create the container with:
 ```bash
-docker run --name hosts --network=ethz-scientific --volumes-from=<running-kea-container> ungleich/ungleich-host-inventory
+docker run --name hosts --network=<user-defined-network> --volumes-from=<running-kea-container> ungleich/ungleich-host-inventory
 ```
 
 # Getting host reservations at any time.
