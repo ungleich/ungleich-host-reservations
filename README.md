@@ -1,17 +1,29 @@
-Create me like this:
+![alt text](http://www.ungleich.ch/img/logo_200x200.svg "ungleich")
 
+# ungleich-host-reservations
+
+Container intended to get all host reservations from a running ungleich/ungleich-kea container.
+
+# Creating the container
+
+If you want to specify the database connection parameters manually, you can run/create the container like this:
 ```bash
 docker run --name hosts --network=ethz-scientific -e HOST=postgres -e DB=kea_db -e USER=kea -e PASSWORD=dummy_password ungleich/ungleich-host-inventory
 ```
 
-Later, when you need to know the full list of host reservations, you can call me again like this:
+Otherwise, if you prefer to take the parameters directly from a running Kea container, you can run/create the container with:
+```bash
+docker run --name hosts --network=ethz-scientific --volumes-from=<running-kea-container> ungleich/ungleich-host-inventory
+```
+
+# Getting host reservations at any time.
+
+Later, when you need to know the full list of host reservations, you can simply reuse the previously created container:
 
 ```bash
 docker start -i hosts
 ```
 
-When you get bored about me (or if your Postgres credentials change), just delete me:
+# How to update database credentials?
 
-```bash
-docker rm hosts
-```
+When you need to update the database credentials (whether specified manually or automatically), you need to destroy the container and create a new one.
